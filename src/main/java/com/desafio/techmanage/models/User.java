@@ -41,6 +41,10 @@ public class User  {
         this.userType = userType;
     }
 
+    public User() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -90,4 +94,6 @@ public class User  {
     public void setUserType(@Nullable String userType) {
         this.userType = userType;
     }
+
+
 }

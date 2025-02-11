@@ -1,5 +1,6 @@
 package com.desafio.techmanage.forms;
 
+import com.desafio.techmanage.models.User;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -26,5 +27,40 @@ public class UserForm {
     @Nullable
     @Length(min = 5, max = 10)
     private String userType;
+
+    public UserForm(String fullName, String email, String phone, Date birthDate, String userType) {
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
+        this.userType = userType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public User toModel() {
+        User user = new User();
+        user.setEmail(email);
+        user.setUserType(userType);
+        user.setBirthDate(birthDate);
+        user.setFullName(fullName);
+        user.setPhone(phone);
+
+        return user;
+    }
 
 }
