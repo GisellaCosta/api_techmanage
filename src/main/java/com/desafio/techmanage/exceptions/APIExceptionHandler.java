@@ -1,6 +1,7 @@
 package com.desafio.techmanage.exceptions;
 
 import com.desafio.techmanage.exceptions.business.DataAlreadyRegisteredException;
+import com.desafio.techmanage.exceptions.business.DataNotRegisteredException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -22,6 +23,12 @@ public class APIExceptionHandler {
         errorDTO.setMessage(exception.getLocalizedMessage());
 
         return ResponseEntity.badRequest().body(errorDTO);
+    }
+
+    @ExceptionHandler({
+            DataNotRegisteredException.class})
+    public ResponseEntity<ApiError> handleNotFoundExceptions(Exception exception) {
+        return ResponseEntity.notFound().build();
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})

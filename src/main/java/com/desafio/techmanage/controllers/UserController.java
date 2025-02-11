@@ -6,6 +6,7 @@ import com.desafio.techmanage.forms.UserForm;
 import com.desafio.techmanage.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +20,21 @@ public class UserController {
     UserService userService;
 
     @PostMapping(value = "/")
-    public ResponseEntity<UserVO> adicionar(@Valid @RequestBody UserForm userform) {
-        return ResponseEntity.ok(userService.adicionar(userform));
+    public ResponseEntity<UserVO> addUser(@Valid @RequestBody UserForm userform) {
+        return ResponseEntity.ok(userService.addUser(userform));
     }
 
     @GetMapping (value = "/")
-    public ResponseEntity<List<User>> buscarUsuarios() {
-        return ResponseEntity.ok(userService.buscarUsuarios());
+    public ResponseEntity<List<UserVO>> findAllUsers() {
+        return ResponseEntity.ok(userService.findAllUsers());
 
     }
+
+    @GetMapping (value = "/{id}")
+    public ResponseEntity<UserVO> findUsersById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.findUsersById(id));
+
+    }
+
+
 }
