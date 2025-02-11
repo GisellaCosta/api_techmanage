@@ -8,6 +8,8 @@ import com.desafio.techmanage.forms.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -31,5 +33,7 @@ public class UserService {
         return UserVO.fromModel(user);
     }
 
-
+    public List<User> buscarUsuarios(){
+        return userRepository.findAll();
+    }
 }

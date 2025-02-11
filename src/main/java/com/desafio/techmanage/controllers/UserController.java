@@ -1,5 +1,6 @@
 package com.desafio.techmanage.controllers;
 
+import com.desafio.techmanage.models.User;
 import com.desafio.techmanage.vo.UserVO;
 import com.desafio.techmanage.forms.UserForm;
 import com.desafio.techmanage.services.UserService;
@@ -7,6 +8,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -20,5 +23,9 @@ public class UserController {
         return ResponseEntity.ok(userService.adicionar(userform));
     }
 
+    @GetMapping (value = "/")
+    public ResponseEntity<List<User>> buscarUsuarios() {
+        return ResponseEntity.ok(userService.buscarUsuarios());
 
+    }
 }
