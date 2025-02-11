@@ -7,13 +7,15 @@ import java.util.Date;
 
 public class UserVO implements Serializable {
 
+    private Long id;
     private String fullName;
     private String email;
     private String phone;
     private Date birthDate;
     private String userType;
 
-    public UserVO(String fullName, String email, String phone, Date birthDate, String userType) {
+    public UserVO(Long id, String fullName, String email, String phone, Date birthDate, String userType) {
+        this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
@@ -22,6 +24,14 @@ public class UserVO implements Serializable {
     }
 
     public UserVO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFullName() {
@@ -66,6 +76,7 @@ public class UserVO implements Serializable {
 
     public static UserVO fromModel(User user) {
         UserVO userVO = new UserVO();
+        userVO.setId(user.getId());
         userVO.setEmail(user.getEmail());
         userVO.setUserType(user.getUserType());
         userVO.setBirthDate(user.getBirthDate());

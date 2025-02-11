@@ -3,6 +3,7 @@ package com.desafio.techmanage.models;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 
@@ -24,6 +25,10 @@ public class User  {
 
     @Nullable
     @Length(min = 10, max = 15)
+    @Pattern(
+            regexp = "^\\+\\d{1,3}\\s?\\d{1,4}[\\s-]?\\d{4,}$",
+            message = "Número de telefone inválido. Use o formato internacional, ex: +55 11 99999-9999"
+    )
     private String phone;
 
     @NotNull
@@ -41,9 +46,17 @@ public class User  {
         this.userType = userType;
     }
 
-    public User() {
-
+    public User(Long id, String fullName, String email, String phone, Date birthDate, String userType) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
+        this.userType = userType;
     }
+
+    public User() {}
+
 
     public Long getId() {
         return id;
