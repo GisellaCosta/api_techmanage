@@ -36,5 +36,19 @@ public class UserController {
 
     }
 
+    @PutMapping (value = "/{id}")
+    public ResponseEntity<UserVO> updateUsersById(@PathVariable Long id, @Valid @RequestBody UserForm userform) {
+        return ResponseEntity.ok(userService.updateUsersById(id, userform));
+
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<UserVO> deleteUsersById(@PathVariable Long id){
+
+        userService.deleteUsersById(id);
+
+        return ResponseEntity.ok().build();
+    }
+
 
 }

@@ -57,4 +57,35 @@ public class UserService {
         }
         return UserVO.fromModel(user.get());
     }
+
+    public UserVO updateUsersById(Long id, UserForm userform){
+        Optional<User> user = userRepository.findById(id);
+
+        if(user.isEmpty()){
+            throw new DataNotRegisteredException();
+        }
+
+        User toUpdateUser = user.get();
+
+        toUpdateUser.setPhone(userform.getPhone());
+        toUpdateUser.setEmail(userform.getEmail());
+        toUpdateUser.setFullName(userform.getFullName());
+        toUpdateUser.setUserType(userform.getUserType());
+        toUpdateUser.setBirthDate(userform.getBirthDate());
+
+        userRepository.save(toUpdateUser);
+
+        return UserVO.fromModel(toUpdateUser);
+    }
+
+    public void  deleteUsersById(Long id){
+
+        Optional<User> user = userRepository.findById(id);
+
+        if(user.isEmpty()){
+            throw new DataNotRegisteredException();
+        }
+        userRepository.deleteById(id);
+
+    }
 }

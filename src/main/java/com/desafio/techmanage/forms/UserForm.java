@@ -36,20 +36,46 @@ public class UserForm {
         this.userType = userType;
     }
 
-    public String getEmail() {
+    public @NotNull @Length(min = 5, max = 100) String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(@NotNull @Length(min = 5, max = 100) String email) {
         this.email = email;
     }
 
-    public String getPhone() {
-        return email;
+    @Nullable
+    public @Length(min = 10, max = 15) String getPhone() {
+        return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(@Nullable @Length(min = 10, max = 15) String phone) {
         this.phone = phone;
+    }
+
+    public @NotNull @Length(min = 3, max = 100) String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(@NotNull @Length(min = 3, max = 100) String fullName) {
+        this.fullName = fullName;
+    }
+
+    public @NotNull Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(@NotNull Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    @Nullable
+    public @Length(min = 5, max = 10) String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(@Nullable @Length(min = 5, max = 10) String userType) {
+        this.userType = userType;
     }
 
     public User toModel() {
