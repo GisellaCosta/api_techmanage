@@ -1,7 +1,7 @@
 # api_techmanage
 Sistema de aplicação para gerenciar usuários
 
-# 🛠 Tecnologias
+#  Tecnologias
 - Java 17
 - Spring Boot 3.4.2
 - Spring Data JPA
@@ -11,7 +11,7 @@ Sistema de aplicação para gerenciar usuários
 - H2 Database
 - JDBC API
 
-## 🚀 Como Rodar
+##  Como Rodar
 
 ### 1. Clone o repositório:
 ```sh
