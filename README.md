@@ -8,10 +8,10 @@ Sistema de aplicação para gerenciar usuários
 - Spring Data JDBC
 - Spring Web
 - Spring Boot Dev Tools
-- H2 Database
+- H2 Database em memória 
 - JDBC API
 
-##  Como Rodar
+##  Como Rodar o Projeto
 
 ### 1. Clone o repositório:
 ```sh
@@ -25,5 +25,60 @@ cd api_techmanage
 ```sh
 mvn spring-boot:run
 ```
+
+## Como Rodar os Testes 
+
+### 1. Execute este comando no terminal
+```sh
+mvn test
+```
+
+## Exemplos de requests 
+
+### 1. Cadastrar novo usuário
+POST /api/users/
+```
+{
+    "fullName": "João da Silvaa",
+    "email": "pedro.silva@emaill.com",
+    "phone": "+55954199945",
+    "birthDate": "1990-05-25",
+    "userType": "ADMIN"
+}
+```
+
+### 2. Buscar todos os usuários 
+GET /api/users/
+```
+Sem body para essa requisição
+```
+
+### 3. Buscar usuários por Id
+GET /api/users/1
+```
+Sem body para essa requisição
+```
+
+### 4. Atualizar cadastro do usuário
+PUT /api/users/1
+```
+{
+    "id": 2,
+    "fullName": "João da Silva",
+    "email": "gisella.silvaa@email.com",
+    "phone": "+559999999998",
+    "birthDate": "1990-05-20T00:00:00.000+00:00",
+    "userType": "ADMIN"
+}
+```
+
+### 5. Deletar um usuário
+DELETE /api/users/1
+```
+Sem body para essa requisição
+```
+
+
+
 
 
