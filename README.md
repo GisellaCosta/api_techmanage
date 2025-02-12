@@ -35,6 +35,10 @@ mvn test
 
 ## Exemplos de requests 
 
+### Observações
+
+- Por padrão o projeto roda na porta 8080
+
 ### 1. Cadastrar novo usuário
 POST /api/users/
 ```
@@ -78,9 +82,7 @@ DELETE /api/users/1
 Sem body para essa requisição
 ```
 
-## Observações
 
- - Por padrão o projeto roda na porta 8080
 
 
 
