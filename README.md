@@ -78,6 +78,10 @@ DELETE /api/users/1
 Sem body para essa requisição
 ```
 
+## Observações
+
+ - Por padrão o projeto roda na porta 8080
+
 
 
 
