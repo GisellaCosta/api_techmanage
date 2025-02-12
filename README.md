@@ -21,7 +21,7 @@ git clone https://github.com/GisellaCosta/api_techmanage.git
 ```sh
 cd api_techmanage
 ```
-### 3.Compile e rode a aplicação:
+### 3.Com o maven instalado compile e rode a aplicação:
 ```sh
 mvn spring-boot:run
 ```
