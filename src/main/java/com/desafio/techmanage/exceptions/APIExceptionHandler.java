@@ -10,6 +10,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @ControllerAdvice
 public class APIExceptionHandler {
 
@@ -45,7 +48,7 @@ public class APIExceptionHandler {
 
         errorDTO.setError(exception.getClass().getSimpleName());
         errorDTO.setStatus(HttpStatus.BAD_REQUEST.value());
-        errorDTO.setMessage("invalid fields: " + fields);
+        errorDTO.setMessage("campos inválidos: " + fields);
 
         return ResponseEntity.badRequest().body(errorDTO);
     }
@@ -59,5 +62,7 @@ public class APIExceptionHandler {
 
         return ResponseEntity.internalServerError().body(errorDTO);
     }
+
+
 
 }

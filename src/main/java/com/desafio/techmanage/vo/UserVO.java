@@ -1,5 +1,6 @@
 package com.desafio.techmanage.vo;
 
+import com.desafio.techmanage.enums.UserType;
 import com.desafio.techmanage.models.User;
 
 import java.io.Serializable;
@@ -12,9 +13,9 @@ public class UserVO implements Serializable {
     private String email;
     private String phone;
     private Date birthDate;
-    private String userType;
+    private UserType userType;
 
-    public UserVO(Long id, String fullName, String email, String phone, Date birthDate, String userType) {
+    public UserVO(Long id, String fullName, String email, String phone, Date birthDate, UserType userType) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -66,11 +67,11 @@ public class UserVO implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public String getUserType() {
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 

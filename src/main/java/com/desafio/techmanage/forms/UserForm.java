@@ -1,10 +1,11 @@
 package com.desafio.techmanage.forms;
 
+import com.desafio.techmanage.enums.UserType;
 import com.desafio.techmanage.models.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.annotation.Nullable;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
@@ -17,15 +18,16 @@ public class UserForm {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "O campo 'fullName' não pode estar vazio")
     @Length(min = 3, max = 100)
     private String fullName;
 
-    @NotNull
+    @NotNull(message = "O campo 'email' não pode estar vazio")
+    @Email(message = "O email fornecido não é válido")
     @Length(min = 5, max = 100)
     private String email;
 
-    @Nullable
+    @NotNull(message = "O campo 'phone' não pode estar vazio")
     @Length(min = 10, max = 15)
     @Pattern(
             regexp = "^\\+\\d{1,3}\\s?\\d{1,4}[\\s-]?\\d{4,}$",
@@ -33,12 +35,14 @@ public class UserForm {
     )
     private String phone;
 
-    @NotNull
+    @NotNull(message = "O campo 'birthDate' não pode estar vazio")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthDate;
 
-    @Nullable
-    @Length(min = 5, max = 10)
-    private String userType;
+    @NotNull(message = "O campo 'userType' não pode estar vazio")
+    @Pattern(regexp = "ADMIN|EDITOR|VIEWER", message = "Tipo de usuário inválido! Os valores aceitos são: ADMIN, EDITOR, VIEWER.")
+    @Enumerated(EnumType.STRING)
+    private String  userType;
 
     public UserForm(Long id,String fullName, String email, String phone, Date birthDate, String userType) {
         this.id = id;
@@ -90,19 +94,18 @@ public class UserForm {
         this.birthDate = birthDate;
     }
 
-    @Nullable
-    public @Length(min = 5, max = 10) String getUserType() {
+    public String  getUserType() {
         return userType;
     }
 
-    public void setUserType(@Nullable @Length(min = 5, max = 10) String userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 
     public User toModel() {
         User user = new User();
         user.setEmail(email);
-        user.setUserType(userType);
+        user.setUserType(UserType.valueOf(userType.toUpperCase()));
         user.setBirthDate(birthDate);
         user.setFullName(fullName);
         user.setPhone(phone);

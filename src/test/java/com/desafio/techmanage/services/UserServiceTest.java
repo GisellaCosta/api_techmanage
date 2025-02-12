@@ -1,5 +1,6 @@
 package com.desafio.techmanage.services;
 
+import com.desafio.techmanage.enums.UserType;
 import com.desafio.techmanage.exceptions.business.DataAlreadyRegisteredException;
 import com.desafio.techmanage.exceptions.business.DataNotRegisteredException;
 import com.desafio.techmanage.forms.UserForm;
@@ -40,13 +41,13 @@ class UserServiceTest {
     private final String EMAIL = "joao@email.com";
     private final String PHONE = "123456789";
     private final Date BIRTH_DATE = new Date();
-    private final String USER_TYPE = "ADMIN";
+    private final UserType USER_TYPE = UserType.valueOf("ADMIN");
 
     @BeforeEach
     void setUp() {
         user = new User(USER_ID, FULL_NAME, EMAIL, PHONE, BIRTH_DATE, USER_TYPE);
         userVO = new UserVO(USER_ID,FULL_NAME, EMAIL, PHONE, BIRTH_DATE, USER_TYPE);
-        userForm = new UserForm(USER_ID,FULL_NAME, EMAIL, PHONE, BIRTH_DATE, USER_TYPE);
+        userForm = new UserForm(USER_ID,FULL_NAME, EMAIL, PHONE, BIRTH_DATE, USER_TYPE.toString());
     }
 
 

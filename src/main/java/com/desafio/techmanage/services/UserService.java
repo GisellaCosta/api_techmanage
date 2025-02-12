@@ -1,5 +1,6 @@
 package com.desafio.techmanage.services;
 
+import com.desafio.techmanage.enums.UserType;
 import com.desafio.techmanage.exceptions.business.DataAlreadyRegisteredException;
 import com.desafio.techmanage.exceptions.business.DataNotRegisteredException;
 import com.desafio.techmanage.models.User;
@@ -70,7 +71,7 @@ public class UserService {
         toUpdateUser.setPhone(userform.getPhone());
         toUpdateUser.setEmail(userform.getEmail());
         toUpdateUser.setFullName(userform.getFullName());
-        toUpdateUser.setUserType(userform.getUserType());
+        toUpdateUser.setUserType(UserType.valueOf(userform.getUserType()));
         toUpdateUser.setBirthDate(userform.getBirthDate());
 
         userRepository.save(toUpdateUser);

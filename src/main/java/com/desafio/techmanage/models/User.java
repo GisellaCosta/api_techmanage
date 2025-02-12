@@ -1,7 +1,9 @@
 package com.desafio.techmanage.models;
 
-import jakarta.annotation.Nullable;
+import com.desafio.techmanage.enums.UserType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
@@ -12,18 +14,21 @@ import java.util.Date;
 public class User  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @NotNull
+    @Column(name = "full_name")
+    @NotNull(message = "O campo 'fullName' não pode estar vazio")
     @Length(min = 3, max = 100)
     private String fullName;
 
-    @NotNull
+    @NotNull(message = "O campo 'email' não pode estar vazio")
+    @Email(message = "O email fornecido não é válido")
     @Length(min = 5, max = 100)
     private String email;
 
-    @Nullable
+    @NotNull(message = "O campo 'phone' não pode estar vazio")
     @Length(min = 10, max = 15)
     @Pattern(
             regexp = "^\\+\\d{1,3}\\s?\\d{1,4}[\\s-]?\\d{4,}$",
@@ -31,14 +36,18 @@ public class User  {
     )
     private String phone;
 
-    @NotNull
+    @Column(name = "birth_date")
+    @NotNull(message = "O campo 'birthDate' não pode estar vazio")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthDate;
 
-    @Nullable
-    @Length(min = 5, max = 10)
-    private String userType;
 
-    public User(String fullName, String email, String phone, Date birthDate, String userType) {
+    @Column(name = "user_type")
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "O campo 'userType' não pode estar vazio")
+    private UserType userType;
+
+    public User(String fullName, String email, String phone, Date birthDate,  UserType userType) {
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
@@ -46,7 +55,7 @@ public class User  {
         this.userType = userType;
     }
 
-    public User(Long id, String fullName, String email, String phone, Date birthDate, String userType) {
+    public User(Long id, String fullName, String email, String phone, Date birthDate,  UserType userType) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -82,12 +91,11 @@ public class User  {
         this.email = email;
     }
 
-    @Nullable
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(@Nullable String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -99,12 +107,12 @@ public class User  {
         this.birthDate = birthDate;
     }
 
-    @Nullable
-    public String getUserType() {
+
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(@Nullable String userType) {
+    public void setUserType( UserType userType) {
         this.userType = userType;
     }
 
